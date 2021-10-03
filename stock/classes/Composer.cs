@@ -9,11 +9,16 @@ namespace stock.classes
 {
     class Composer
     {
+        /* considere qu'un composer peut etre constitué de un à plusieurs composants
+         * différents. par exemple le composer 1 est composé du composant1 et du com
+         * posant3
+         * 
+         */
         #region attributs
         public static List<Composer> CollClassComposer = new List<Composer>();
 
-        private int _quantite;
-        private List<Composant> _lesComposants;
+        private int _quantite; // il s'agit du nombre de composants du composer
+        private List<Composant> _lesComposants; //un composant peut etre present en plusieurs exemplaires
         private Mat1 _laMat1;// Bizarre !!!!!
 
 

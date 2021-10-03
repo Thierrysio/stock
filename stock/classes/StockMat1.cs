@@ -12,14 +12,14 @@ namespace stock.classes
         #region attributs
 
         public static List<StockMat1> CollClassStockMat1 = new List<StockMat1>();
-        private string _nom; // nom de la matiere premiere
+        private string _nom; // nom de la matiere premiere - bizarre
         private int _quantite;
         private int _stockMinimum;
         #endregion
 
         #region constructeurs
 
-        public StockMat1(int quantite, bool entree, bool sortie, int stockminimum) : base(quantite)
+        public StockMat1(int quantite, int stockminimum) : base(quantite)
         {
             this.StockMinimum = stockminimum;
             this.Quantite = quantite;

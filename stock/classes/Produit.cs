@@ -9,6 +9,12 @@ namespace stock.classes
 {
     class Produit
     {
+        /* considere qu'un produit peut etre constitué de un à plusieurs composer
+         * différents. par exemple le produit 1 est composé du composer1 et du com
+         * poser3
+         * 
+         */
+
         #region attributs
         public static List<Produit> CollClassProduit = new List<Produit>();
 
@@ -40,9 +46,9 @@ namespace stock.classes
 
         #region methodes
 
-        public int getListeMatierePremieres()
+        public List<Mat1> getListeMatierePremieresNecessaires()
         {
-            int resultat = 0;
+            List<Mat1> resultat = new List<Mat1>();
 
             return resultat;
             #endregion

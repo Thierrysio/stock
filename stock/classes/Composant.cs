@@ -15,8 +15,7 @@ namespace stock.classes
 
         private string nom;
        // un composant est fabriqué à partir de plusieurs matières premieres
-       // chaque matiere premiere utilisée doit etre quantifiée
-
+       //                       implementer l'attribut
         #endregion
 
         #region constructeurs
