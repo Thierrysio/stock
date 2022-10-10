@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    class Produit
+    public class Produit
     {
         /* considere qu'un produit peut etre constitué de un à plusieurs composer
          * différents. par exemple le produit 1 est composé du composer1 et du com
@@ -28,8 +28,8 @@ namespace stock.classes
 
         public Produit(string nom)
         {
-            this.nom = nom;
-            _lesComposer = new List<Composer>();
+            this.Nom = nom;
+            this.LesComposer = new List<Composer>();
 
             Produit.CollClassProduit.Add(this);
         }
@@ -40,18 +40,57 @@ namespace stock.classes
 
         
         public List<Composer> LesComposer { get => _lesComposer; set => _lesComposer = value; }
+        public string Nom { get => nom; set => nom = value; }
 
 
         #endregion
 
         #region methodes
 
-        public List<Mat1> getListeMatierePremieresNecessaires()
+        public Dictionary<Mat1, int> GetMatieres()
         {
-            List<Mat1> resultat = new List<Mat1>();
+            Dictionary<Mat1, int> resultat = new Dictionary<Mat1, int>();
 
+            foreach (var leComposer in this.DicoComposer)
+            {
+                foreach (var leMat1 in leComposer.Key.GetMatieres())
+                {
+                    if (resultat.ContainsKey(leMat1.Key))
+                    {
+                        resultat[leMat1.Key] += leMat1.Value * leComposant.Value;
+                    }
+                    else
+                    {
+                        resultat.Add(leMat1.Key, leMat1.Value * leComposant.Value);
+                    }
+                }
+            }
             return resultat;
-            #endregion
+
+
         }
+
+        public Dictionary<Mat1, int> GetAcheter()
+        {
+            Dictionary<Mat1, int> resultat = new Dictionary<Mat1, int>();
+            foreach(var laMat1 in this.GetMatieres())
+            {
+                foreach(StockMat1 leStockMat1 in StockMat1.CollClassStockMat1)
+                {
+                    if (laMat1.Key == leStockMat1.LaMat1)
+                    {
+                        if (laMat1.Value < leStockMat1.Quantite)
+                        {
+                            leStockMat1.acheter(laMat1.Value);
+                            resultat.Add(laMat1.Key, laMat1.Value);
+                        }
+                    }
+                }
+
+            }
+            return resultat;
+
+        }
+        #endregion
     }
 }

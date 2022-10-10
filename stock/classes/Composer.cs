@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    class Composer
+    public class Composer
     {
         /* considere qu'un composer peut etre constitué de un à plusieurs composants
          * différents. par exemple le composer 1 est composé du composant1 et du com
@@ -17,33 +17,49 @@ namespace stock.classes
         #region attributs
         public static List<Composer> CollClassComposer = new List<Composer>();
 
-        private int _quantite; // il s'agit du nombre de composants du composer
-        private List<Composant> _lesComposants; //un composant peut etre present en plusieurs exemplaires
-        private Mat1 _laMat1;// Bizarre !!!!!
-
+        private Dictionary<Composant, int> _dicoComposants;
 
         #endregion
 
         #region constructeurs
-        public Composer(int quantite, List<Composant> lesComposants, Mat1 laMat1)
+        public Composer( )
         {
-            Quantite = quantite;
-            LesComposants = lesComposants;
-            _laMat1 = laMat1;
+           
             Composer.CollClassComposer.Add(this);
+            this.DicoComposants = new Dictionary<Composant, int>();
         }
+
 
         #endregion
 
         #region getters - setters
+        public Dictionary<Composant, int> DicoComposants { get => _dicoComposants; set => _dicoComposants = value; }
 
-        public int Quantite { get => _quantite; set => _quantite = value; }
-        public List<Composant> LesComposants { get => _lesComposants; set => _lesComposants = value; }
-        public Mat1 LaMat1 { get => _laMat1; set => _laMat1 = value; }
         #endregion
 
         #region methodes
+        public Dictionary<Mat1, int> GetMatieres()
+        {
+            Dictionary<Mat1, int> resultat = new Dictionary<Mat1, int>();
 
+            foreach(var leComposant in this.DicoComposants )
+            {
+                foreach(var leMat1 in leComposant.Key.GetMatieres())
+                {
+                    if (resultat.ContainsKey(leMat1.Key))
+                    {
+                        resultat[leMat1.Key] += leMat1.Value * leComposant.Value;
+                    }
+                    else
+                    {
+                        resultat.Add(leMat1.Key, leMat1.Value * leComposant.Value);
+                    }
+                }
+            }
+
+            return resultat;
+
+        }
 
         #endregion
     }

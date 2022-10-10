@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    class Produire
+    public class Produire
     {
 
         //nous pensons que cette classe ne doit pas etre implémentée.

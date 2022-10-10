@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    class Mat1
+    public class Mat1
     {
         #region attributs
 
@@ -19,16 +19,7 @@ namespace stock.classes
 
         #endregion
 
-        #region constructeurs
 
-        public Mat1(string nom)
-        {
-            Nom = nom;
-
-        }
-
-
-        #endregion
 
         #region getters - setters
 

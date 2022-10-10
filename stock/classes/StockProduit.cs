@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    class StockProduit : Stock
+    public class StockProduit : Stock
     {
         #region attributs
         public static List<StockProduit> CollClassStockProduit = new List<StockProduit>();
         Produit _leProduit;
-        //je pense que c'est dans cette classe qu'il faut implementer produire
         
         #endregion
 

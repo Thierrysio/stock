@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace stock.classes
 {
-    abstract class Stock
+    public abstract class Stock
     {
         #region attributs
         public static List<Stock> CollClassStock = new List<Stock>();
@@ -38,10 +38,12 @@ namespace stock.classes
         public void AjouterAuStock()
         {
         }
-        public void EnleverDuStock()
+        public override void EnleverDuStock()
         {
 
         }
+       
+        
 
         #endregion
     }
